@@ -1,0 +1,159 @@
+\section{Resumen de Unidades de Sistemas Operativos}
+
+\subsection{Unidad 1: Conceptos Básicos y Multiprogramación}
+En esta unidad se abordan los fundamentos esenciales de los sistemas operativos y la técnica de **multiprogramación**, que es crucial para la eficiencia y el rendimiento del sistema.
+
+\begin{itemize}
+	\item \textbf{Sistema Operativo (SO)}: Es el software que gestiona los recursos de hardware y proporciona servicios a las aplicaciones y usuarios.
+	
+	\item \textbf{Multiprogramación}: 
+	\begin{itemize}
+		\item \textbf{Definición}: Técnica que permite que múltiples procesos residan en la memoria al mismo tiempo y compartan la CPU de manera eficiente.
+		\item \textbf{Ventajas}:
+		\begin{itemize}
+			\item Mayor utilización de la CPU.
+			\item Reducción de tiempos muertos, ya que mientras un proceso espera por E/S, otro puede ejecutarse.
+			\item Incremento en la eficiencia general del sistema.
+		\end{itemize}
+		\item \textbf{Comparación Proceso vs Programa}: 
+		\begin{itemize}
+			\item \textbf{Programa}: Conjunto de instrucciones estáticas almacenadas en disco.
+			\item \textbf{Proceso}: Instancia en ejecución de un programa, que incluye su estado actual, registros y recursos asignados.
+		\end{itemize}
+	\end{itemize}
+	
+	\item \textbf{Tipos de Sistemas Operativos}:
+	\begin{itemize}
+		\item \textbf{Sistemas de Tiempo Compartido}: Permiten que múltiples usuarios interactúen con la computadora de manera simultánea.
+		\item \textbf{Sistemas de Tiempo Real}: Diseñados para aplicaciones que requieren respuestas rápidas y predecibles.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Unidad 2: Estructuras del Sistema Operativo}
+Esta unidad explora las diferentes arquitecturas y modelos organizativos que adoptan los sistemas operativos para gestionar sus componentes y servicios.
+
+\begin{itemize}
+	\item \textbf{Estructura Monolítica}:
+	\begin{itemize}
+		\item \textbf{Definición}: Todos los servicios del sistema operativo están integrados en un único bloque de código.
+		\item \textbf{Ventajas}: Comunicación rápida entre módulos.
+		\item \textbf{Desventajas}: Dificultad para escalar y mantener debido a la interdependencia de módulos.
+	\end{itemize}
+	
+	\item \textbf{Modelo Cliente-Servidor}:
+	\begin{itemize}
+		\item \textbf{Definición}: Arquitectura donde los clientes solicitan servicios a servidores a través de una red.
+		\item \textbf{Características}:
+		\begin{itemize}
+			\item Distribución de tareas entre proveedores (servidores) y consumidores (clientes).
+			\item Mejora la escalabilidad y eficiencia al manejar múltiples solicitudes simultáneamente.
+		\end{itemize}
+	\end{itemize}
+	
+	\item \textbf{Máquina Virtual}:
+	\begin{itemize}
+		\item \textbf{Definición}: Tecnología que permite crear réplicas virtuales de máquinas físicas, facilitando la ejecución de múltiples sistemas operativos en un mismo hardware.
+		\item \textbf{Ventajas}: Aislamiento de sistemas, flexibilidad y eficiencia en el uso de recursos.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Unidad 3: Gestión de Procesos y Tipos de Procesos}
+En esta unidad se profundiza en la gestión de procesos dentro del sistema operativo, así como en la clasificación de los mismos según sus características y comportamientos.
+
+\begin{itemize}
+	\item \textbf{Proceso}:
+	\begin{itemize}
+		\item \textbf{Definición}: Instancia en ejecución de un programa, que incluye su código, datos y recursos asignados.
+		\item \textbf{Estados de un Proceso}: Nuevo, listo, en ejecución, bloqueado y terminado.
+	\end{itemize}
+	
+	\item \textbf{Bloque de Control de Procesos (PCB)}:
+	\begin{itemize}
+		\item \textbf{Definición}: Estructura de datos que almacena información sobre un proceso, incluyendo su identificador, estado, registros y recursos asignados.
+	\end{itemize}
+	
+	\item \textbf{Tipos de Procesos}:
+	\begin{itemize}
+		\item \textbf{Reutilizables}: Pueden cambiar los datos que utilizan pero deben reiniciarse desde su estado inicial si se ejecutan nuevamente.
+		\item \textbf{Reentrantes}: No contienen datos modificables y pueden ser compartidos entre varios usuarios simultáneamente.
+		\item \textbf{Apropiativos}: Una vez asignado un recurso, no permiten que otros procesos lo utilicen hasta que terminen.
+		\item \textbf{No Apropiativos}: Permiten compartir recursos con otros procesos.
+	\end{itemize}
+	
+	\item \textbf{Gestión de Procesos}:
+	\begin{itemize}
+		\item Operaciones básicas: Creación, destrucción, suspensión y reanudación de procesos.
+		\item Coordinación y sincronización entre procesos para evitar conflictos y garantizar un funcionamiento correcto.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Unidad 4: Excepciones, Protección y Servicios del Sistema Operativo}
+Esta unidad abarca la gestión de excepciones y la protección del sistema, así como los diversos servicios que el sistema operativo ofrece tanto a los usuarios como a las aplicaciones.
+
+\begin{itemize}
+	\item \textbf{Excepciones}:
+	\begin{itemize}
+		\item \textbf{Definición}: Eventos inesperados que alteran el flujo normal de ejecución de un proceso, como errores de hardware o software.
+		\item \textbf{Tipos de Excepciones}:
+		\begin{itemize}
+			\item \textbf{Catastróficas}: Errores irreparables que pueden causar el fallo del sistema.
+			\item \textbf{No Recuperables}: Errores que no pueden ser manejados y requieren la terminación del proceso.
+			\item \textbf{Recuperables}: Errores que pueden ser manejados por el sistema operativo sin afectar la estabilidad general.
+		\end{itemize}
+	\end{itemize}
+	
+	\item \textbf{Protección del Sistema Operativo}:
+	\begin{itemize}
+		\item \textbf{Objetivo}: Evitar que procesos no autorizados accedan o interfieran con recursos críticos del sistema.
+		\item \textbf{Mecanismos}:
+		\begin{itemize}
+			\item Protección de memoria para aislar procesos.
+			\item Control de acceso a dispositivos de E/S.
+			\item Gestión de privilegios de usuario para operaciones sensibles.
+		\end{itemize}
+	\end{itemize}
+	
+	\item \textbf{Servicios del Sistema Operativo}:
+	\begin{itemize}
+		\item \textbf{Servicios de Usuario}:
+		\begin{itemize}
+			\item \textbf{Gestión de Archivos}: Creación, eliminación, lectura y escritura de archivos.
+			\item \textbf{Operaciones de Entrada/Salida}: Interacción con dispositivos periféricos.
+			\item \textbf{Ejecución de Programas}: Carga y ejecución de aplicaciones.
+		\end{itemize}
+		
+		\item \textbf{Servicios del Sistema}:
+		\begin{itemize}
+			\item \textbf{Gestión de Recursos}: Administración de CPU, memoria y dispositivos de E/S.
+			\item \textbf{Protección y Seguridad}: Asegurar que los recursos estén protegidos contra accesos no autorizados.
+			\item \textbf{Gestión de Excepciones}: Manejo de errores y eventos inesperados durante la ejecución de procesos.
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsection{Caso Práctico Adicional: Sistema de Marcación de Horarios de Elton}
+Para ilustrar la aplicación práctica de los conceptos estudiados, se presenta un caso relacionado con la arquitectura y gestión de sistemas operativos.
+
+\begin{itemize}
+	\item \textbf{Descripción del Caso}:
+	\begin{itemize}
+		\item Elton ha desarrollado un sistema online para la marcación de horarios en empresas, permitiendo la gestión de llegadas, salidas, permisos y marcaciones por sucursal.
+		\item El sistema utiliza una base de datos principal y un backup, soportando aproximadamente veintena de clientes simultáneamente sin pérdida de rendimiento.
+	\end{itemize}
+	
+	\item \textbf{Concepto Relacionado}:
+	\begin{itemize}
+		\item \textbf{Cliente-Servidor}:
+		\begin{itemize}
+			\item \textbf{Explicación}: La arquitectura **Cliente-Servidor** permite que múltiples clientes (administradores) accedan al sistema de manera remota. El servidor central gestiona las solicitudes y mantiene la base de datos, asegurando que el rendimiento se mantenga estable incluso con múltiples conexiones simultáneas.
+			\item \textbf{Beneficios}:
+			\begin{itemize}
+				\item Escalabilidad para manejar múltiples clientes.
+				\item Fácil implementación y gestión centralizada de datos.
+				\item Requerimientos mínimos para los clientes, ya que la mayoría del procesamiento se realiza en el servidor.
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+Este resumen abarca los temas clave de cada una de las cuatro unidades, asegurando que se incluyan conceptos fundamentales como la multiprogramación y se eviten contenidos no abordados aún en el curso. Si necesitas ajustar o agregar algún otro tema específico, no dudes en indicarlo.

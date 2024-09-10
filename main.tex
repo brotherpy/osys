@@ -1,0 +1,137 @@
+% Este simbolo es para comentar
+% Definicion de tipo de documento y tamaño de letra
+\documentclass[11pt]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Preambulo
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Paquetes a utilizar en el documento
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{times}
+\usepackage{tocbibind} % Para incluir la bibliografía en el índice
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, positioning}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{cite}
+\usepackage{xcolor}
+\usepackage{geometry} % Allows the configuration of document margins
+\geometry{papersize={216mm,330mm}, hmargin={3cm,0.8in}, height=10.5in}
+\usepackage{graphicx, caption}
+\usepackage{csquotes}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr} % http://mirror.easyname.at/ctan/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+
+% Configuración de hyperref
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+%%%%%%
+% Paquete para manejar el encabezado y pie de página
+%%%%%%
+\pagestyle{fancy} 
+\fancyhead[L]{\rightmark}
+\setlength\headheight{50pt}
+\fancyhead[R]{\raisebox{-0.5\height}{\includegraphics[width=2.2cm]{Imagenes/unican.png}}}
+\fancyfoot{}
+\fancyfoot[L]{\raisebox{-0.5\height}{\includegraphics[width=2.2cm]{Imagenes/facitecLogo1.jpg}}}
+\fancyfoot[R]{\thepage}
+
+\linespread{1.25} % Interlineado
+%\setlength{\parskip}{1em} % Espaciado de párrafo
+
+% Configuración de títulos
+\titleformat{\chapter}
+{\normalfont\Huge\bfseries}{\thechapter}{1em}{}
+
+\lstset{
+	language=Bash,
+	basicstyle=\ttfamily,
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=5pt,
+	backgroundcolor=\color{white},
+	frame=single,
+	captionpos=b,
+	breaklines=true,
+	breakatwhitespace=false,
+	tabsize=4
+}
+
+\begin{document}
+	
+	% Información del documento
+	\title{Sistema Operativo}
+	\author{Luis Torres}
+	\date{Canindeyú, Paraguay, 2024}
+	
+	% CARATULA
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=0.3\linewidth]{Imagenes/facitecLogo1.jpg}
+			\vspace{15pt}
+			
+			{\scshape\LARGE\textbf{Facultad de Ciencias y Tecnología}\\}
+			{\Large\itshape Universidad Nacional de Canindeyú\\}
+			
+			\vspace{1cm}
+			{\huge\scshape\ \textbf{Sistema Operativo}\\}
+			\vspace{1cm}
+			{\huge\bfseries Material de lectura\\}
+			
+			{\Large\itshape Unidades 1 - 4\\}
+			\vspace{1cm}
+			{\Large\itshape Docente: Luis Torres\\}
+			
+			\vfill
+			\vfill
+			
+			% Parte inferior de la página
+			{\large Canindeyú, Paraguay, 2024\\}
+		\end{center}
+	\end{titlepage}
+	
+	\newpage
+	
+	% INDICE
+	\begin{singlespacing}
+		\tableofcontents
+	\end{singlespacing}
+	
+	% Iniciando contenido
+	\selectlanguage{spanish}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%% CONTENIDO
+	%%%%%%%%%%%%%%
+	\include{Capitulos/Unidad1}
+	\include{Capitulos/Unidad2}
+	\include{Capitulos/Unidad3}
+	\include{Capitulos/Unidad4}	
+	%\include{Capitulos/Resumen1-4}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% BIBLIOGRAFÍA
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%% Referencias usando bibtex %%%%%%%%%%%
+	
+	%Referencias Bibliográficas
+	\bibliographystyle{IEEEtran}
+	\bibliography{referencias}
+	
+\end{document}

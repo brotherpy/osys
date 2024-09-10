@@ -1,0 +1,41 @@
+# Archivos compilados
+*.aux
+*.bbl
+*.blg
+*.brf
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.gz
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex
+*.pdfsync
+
+# Archivos de compilación intermedia
+*.dvi
+*.ps
+
+# Archivos de salida (PDF, PostScript, DVI)
+*.pdf
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de control de versiones de LaTeX
+*.idx
+*.ilg
+*.ind
+*.glg
+*.glo
+*.gls
+
+# Archivos temporales de editores de LaTeX
+*.swp
+*.bak
+*.backup
+
