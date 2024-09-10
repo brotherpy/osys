@@ -250,7 +250,7 @@ El Round Robin es ideal para sistemas interactivos donde se necesita que todos l
 	\item 	
 	P1 completa su ejecución (12 a 13).
 	\item P2 vuelve a ejecutarse por 2 unidades de tiempo (de 13 a 15), completando su ejecución.
-	\item P3 vuelve a ejecutarse por 2 unidades de tiempo (de 17 a 17), completando su ejecución.
+	\item P3 vuelve a ejecutarse por 2 unidades de tiempo (de 15 a 17), completando su ejecución.
 	
 \end{itemize}
 
@@ -271,6 +271,12 @@ El algoritmo SJN selecciona siempre el proceso que tiene la menor duración para
 \textbf{Ejemplo:}
 Supongamos que tenemos los siguientes procesos, cada uno con su tiempo de llegada y duración estimada de ejecución:
 
+\begin{figure}[H] \centering \includegraphics[width=0.8\linewidth]{Imagenes/snj_esquema.png} 
+	\caption{Cola de procesos en ejecución para el algoritmo SJN.} 
+\end{figure}
+
+
+
 \begin{itemize} 
 	\item P1 llega en el tiempo 0 y tiene una duración de 6 unidades de tiempo. 
 	\item P2 llega en el tiempo 2 y tiene una duración de 4 unidades de tiempo. 
@@ -278,5 +284,28 @@ Supongamos que tenemos los siguientes procesos, cada uno con su tiempo de llegad
 	\item P4 llega en el tiempo 6 y tiene una duración de 2 unidades de tiempo. 
 	\item P5 llega en el tiempo 8 y tiene una duración de 1 unidad de tiempo. 
 \end{itemize}
+Entonces la ejecución se daría de la siguiente forma:
+\begin{figure}[H] \centering \includegraphics[width=0.8\linewidth]{Imagenes/sjn_ejecucion.png} 
+	\caption{Ejecución de procesos para el algoritmo SJN.} 
+\end{figure}
+\begin{itemize} 
+    \item P1 llega en el tiempo 0 y se ejecuta, pues en ese momento es el único proceso. 
+    \item P4 llega en el tiempo 6 y se ejecuta a continuación, pues es el de menor duración. 
+    \item P5 llega en el tiempo 8 y es el siguiente en ejecutarse. 
+    \item P3 llega en el tiempo 4 y es el próximo en ejecución. 
+    \item P2 llega en el tiempo 2 y es el último en ejecutarse. 
+\end{itemize}
 
 
+
+\subsection{Algoritmo SRT (Shortest Remaining Time)}
+
+El algoritmo Shortest Remaining Time (SRT), también conocido como Shortest Remaining Time First (SRTF), es una variante del algoritmo SJN (Shortest Job Next), pero con la característica de que es un algoritmo apropiativo. Esto significa que un proceso en ejecución puede ser interrumpido si llega otro proceso con un tiempo de ejecución restante menor.
+
+\textbf{Características del SRT:} 
+\begin{itemize} 
+    \item Política apropiativa: Si un proceso con menor tiempo de ejecución restante llega mientras otro proceso está en ejecución, el proceso actual es interrumpido y se le da prioridad al nuevo proceso. 
+    \item Minimización del tiempo promedio de espera: Al igual que en SJN, los procesos más cortos tienen prioridad, lo que reduce el tiempo promedio de espera en el sistema. 
+    \item Eficiente para tiempos dinámicos: A diferencia de SJN, donde es necesario conocer la duración total de los procesos antes de ejecutarse, SRT permite tomar decisiones a medida que nuevos procesos llegan al sistema. 
+    \item Problema del "hambre": Los procesos largos pueden ser interrumpidos continuamente si nuevos procesos más cortos siguen llegando, lo que puede causar que un proceso largo nunca termine. 
+\end{itemize}
