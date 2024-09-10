@@ -309,3 +309,197 @@ El algoritmo Shortest Remaining Time (SRT), también conocido como Shortest Rema
     \item Eficiente para tiempos dinámicos: A diferencia de SJN, donde es necesario conocer la duración total de los procesos antes de ejecutarse, SRT permite tomar decisiones a medida que nuevos procesos llegan al sistema. 
     \item Problema del "hambre": Los procesos largos pueden ser interrumpidos continuamente si nuevos procesos más cortos siguen llegando, lo que puede causar que un proceso largo nunca termine. 
 \end{itemize}
+
+
+\subsection{Algoritmo SRT (Shortest Remaining Time)}
+
+El algoritmo Shortest Remaining Time (SRT), también conocido como Shortest Remaining Time First (SRTF), es una variante del algoritmo SJN (Shortest Job Next), pero con la característica de que es un algoritmo apropiativo. Esto significa que un proceso en ejecución puede ser interrumpido si llega otro proceso con un tiempo de ejecución restante menor.
+
+\textbf{Características del SRT:}
+ \begin{itemize} 
+ 	\item Política apropiativa: Si un proceso con menor tiempo de ejecución restante llega mientras otro proceso está en ejecución, el proceso actual es interrumpido y se le da prioridad al nuevo proceso. 
+ 	\item Minimización del tiempo promedio de espera: Al igual que en SJN, los procesos más cortos tienen prioridad, lo que reduce el tiempo promedio de espera en el sistema. \item Eficiente para tiempos dinámicos: A diferencia de SJN, donde es necesario conocer la duración total de los procesos antes de ejecutarse, SRT permite tomar decisiones a medida que nuevos procesos llegan al sistema. 
+ 	\item Problema del "hambre": Los procesos largos pueden ser interrumpidos continuamente si nuevos procesos más cortos siguen llegando, lo que puede causar que un proceso largo nunca termine. \end{itemize}
+
+\subsubsection{Ejecución según SRT}
+
+El algoritmo SRT selecciona siempre el proceso con el menor tiempo de ejecución restante. Si un nuevo proceso llega con un tiempo de ejecución más corto que el proceso en ejecución, este último se interrumpe y el nuevo proceso comienza a ejecutarse.
+
+\textbf{Ejemplo:} Supongamos que tenemos los siguientes procesos, cada uno con su tiempo de llegada y duración estimada de ejecución:
+
+\begin{figure}[H] \centering \includegraphics[width=0.8\linewidth]{Imagenes/srt_diagrama.png} 
+	\caption{Llegada de los procesos para el algoritmo SRT.} 
+\end{figure}
+
+\begin{itemize} 
+	\item P1 llega en el tiempo 0 y tiene una duración de 8 unidades de tiempo. 
+	\item P2 llega en el tiempo 1 y tiene una duración de 4 unidades de tiempo. 
+	\item P3 llega en el tiempo 2 y tiene una duración de 9 unidades de tiempo. 
+	\item P4 llega en el tiempo 3 y tiene una duración de 5 unidades de tiempo.
+\end{itemize}
+
+\textbf{Ejecución según SRT:}
+
+\begin{figure}[H] \centering \includegraphics[width=0.8\linewidth]{Imagenes/srt_ejecucion.png}
+	 \caption{Ejecución de procesos para el algoritmo SRT.} 
+\end{figure}
+
+\begin{itemize} 
+	\item P1 comienza a ejecutarse en el tiempo 0. 
+	\item P2 llega en el tiempo 1, con 4 unidades de tiempo y toma la ejecución. 
+	\item P4 llega en el tiempo 3, y con 5 unidades de tiempo es el siguiente en ejecutarse. 
+	\item Después de que P4 termina, P1 retoma su ejecución. 
+	\item Finalmente, P3 se ejecuta hasta su finalización. 
+\end{itemize}
+
+\subsection{Algoritmo de Prioridad}
+
+El algoritmo de Prioridad es una política de planificación en la cual cada proceso se asocia con un valor de prioridad. Los procesos con mayor prioridad tienen preferencia para acceder a la CPU y se ejecutan primero. Este enfoque es útil en sistemas donde ciertos procesos requieren un tratamiento preferencial debido a su importancia o urgencia.
+
+\textbf{Características del algoritmo de Prioridad:} 
+\begin{itemize} 
+	\item Política apropiativa o no apropiativa: Dependiendo de la implementación, el sistema puede ser apropiativo, interrumpiendo procesos en ejecución si llega uno con mayor prioridad, o no apropiativo, dejando que el proceso en ejecución termine antes de cambiar al de mayor prioridad. 
+	\item Asignación de prioridades: Las prioridades pueden ser asignadas de manera interna (determinadas por el sistema operativo, por ejemplo, basadas en el comportamiento del proceso) o externa (definidas por el usuario o el sistema). 
+	\item Bloqueo o postergación indefinida (starvation): Uno de los problemas de este algoritmo es que un proceso con baja prioridad puede ser postergado indefinidamente si llegan continuamente procesos con mayor prioridad. Esto provoca que el proceso de baja prioridad nunca sea ejecutado.
+\end{itemize}
+
+\subsubsection{Solución al problema de la postergación indefinida}
+
+Para mitigar el problema de la postergación indefinida, se utiliza una técnica conocida como envejecimiento de prioridades. Con esta técnica, los procesos que llevan mucho tiempo esperando su turno ven incrementada gradualmente su prioridad, lo que les permite acceder eventualmente a la CPU. De esta forma, el sistema garantiza que todos los procesos serán ejecutados.
+
+\subsubsection{Ejecución según Prioridad}
+
+El algoritmo selecciona el proceso con mayor prioridad para ser ejecutado. Si varios procesos tienen la misma prioridad, generalmente se ejecutan en orden de llegada (similar al algoritmo FCFS).
+
+\textbf{Ejemplo:} Supongamos que tenemos los siguientes procesos, cada uno con su tiempo de llegada, duración estimada de ejecución, y prioridad:
+
+\begin{itemize} 
+	\item P1 llega en el tiempo 0, tiene una duración de 6 unidades de tiempo, y una prioridad de 3.
+	\item P2 llega en el tiempo 1, tiene una duración de 3 unidades de tiempo, y una prioridad de 1. 
+	\item P3 llega en el tiempo 2, tiene una duración de 4 unidades de tiempo, y una prioridad de 2.
+	\item P4 llega en el tiempo 3, tiene una duración de 5 unidades de tiempo, y una prioridad de 4.
+\end{itemize}
+
+\textbf{Ejecución según Prioridad:}
+
+\begin{figure}[H] \centering \includegraphics[width=0.8\linewidth]{Imagenes/prioridades.png}
+	\caption{Ejecución de procesos por algoritmo de Prioridad.} 
+\end{figure}
+
+\begin{itemize}
+	\item P1 comienza a ejecutarse en el tiempo 0, ya que es el único proceso disponible en ese momento.
+	\item P4 (prioridad 4) llega en el tiempo 3 y tiene la mayor prioridad, por lo que interrumpe a P1 y se ejecuta a continuación.
+	\item P1 retoma su ejecución después de que P4 termine.
+	\item P3 (prioridad 2) se ejecuta después de P1.
+	\item P2 (prioridad 1) es el último en ejecutarse debido a su baja prioridad.
+\end{itemize}
+\subsection{Algoritmo HRN (High Response Ratio Next)}
+
+El algoritmo High Response Ratio Next (HRN) es una política de planificación que prioriza los procesos en función de la relación entre el tiempo de espera y el tiempo de ejecución. A diferencia de otros algoritmos, HRN tiene en cuenta tanto el tiempo de servicio como el tiempo de espera para determinar qué proceso debe ejecutarse a continuación. Este enfoque ayuda a evitar el problema del hambre (\textit{starvation}) que puede ocurrir en algoritmos como el SJN.
+
+\textbf{Características del HRN:}
+\begin{itemize}
+	\item Política no apropiativa: El proceso seleccionado se ejecuta completamente sin interrupciones.
+	\item Prioriza procesos con mayor relación entre tiempo de espera y tiempo de servicio.
+	\item Minimiza el tiempo de espera promedio y favorece procesos que han esperado más tiempo.
+\end{itemize}
+
+El HRN utiliza la siguiente fórmula para calcular la \textbf{Razón de Respuesta (RR)} de cada proceso:
+
+\[
+RR = \frac{\text{Tiempo de espera} + \text{Tiempo de servicio}}{\text{Tiempo de servicio}}
+\]
+
+El proceso con el mayor valor de \textbf{RR} es el siguiente en ejecutarse.
+
+\subsubsection{Ejecución según HRN}
+
+El algoritmo selecciona el proceso con la mayor razón de respuesta. A medida que los procesos esperan más tiempo, su \textbf{RR} aumenta, lo que les permite ejecutarse eventualmente.
+
+\textbf{Ejemplo:} Supongamos que tenemos los siguientes procesos, cada uno con su tiempo de llegada y duración estimada de ejecución:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Imagenes/diagrama_hrn.png}
+	\caption{Llegada de los procesos para el algoritmo HRN.}
+\end{figure}
+\begin{itemize}
+	\item P1 llega en el tiempo 0, con una duración de 3 unidades de tiempo.
+	\item P2 llega en el tiempo 1, con una duración de 6 unidades de tiempo.
+	\item P3 llega en el tiempo 2, con una duración de 2 unidades de tiempo.
+	\item P4 llega en el tiempo 3, con una duración de 7 unidades de tiempo.
+\end{itemize}
+
+
+
+\textbf{Ejecución según HRN:}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Imagenes/ejecucion_hrn.png}
+	\caption{Ejecución de procesos para el algoritmo HRN.}
+\end{figure}
+
+
+\begin{itemize}
+	\item P1 comienza a ejecutarse en el tiempo 0 y termina en el tiempo 3.
+	\item En el tiempo 3, la \textbf{RR} de los procesos es:
+	\begin{itemize}
+		\item P2: \( RR = \frac{2 + 6}{6} = 1.33 \)
+		\item P3: \( RR = \frac{1 + 2}{2} = 1.5 \)
+		\item P4: \( RR = \frac{0 + 7}{7} = 1.0 \)
+	\end{itemize}
+	Por lo tanto, P3 es el siguiente en ejecutarse.
+	\item P3 se ejecuta de [3, 5].
+	\item En el tiempo 5, la \textbf{RR} de los procesos es:
+	\begin{itemize}
+		\item P2: \( RR = \frac{4 + 6}{6} = 1.67 \)
+		\item P4: \( RR = \frac{2 + 7}{7} = 1.29 \)
+	\end{itemize}
+	P2 se ejecuta a continuación de [5, 11].
+	\item Finalmente, P4 se ejecuta de [11, 18].
+\end{itemize}
+
+
+\subsection{Algoritmo de Colas Múltiples}
+
+El algoritmo de Colas Múltiples es una política de planificación compleja que divide la cola de procesos listos en varias colas separadas, cada una gestionada con su propio algoritmo de planificación. Esta división permite tratar de manera diferenciada a los procesos según su tipo, prioridad o necesidad, optimizando el rendimiento y la respuesta del sistema operativo a diversas cargas de trabajo.
+
+\textbf{Características de las Colas Múltiples:}
+\begin{itemize}
+	\item \textbf{Diversidad de Políticas:} Cada cola puede tener una política de planificación diferente, como FCFS, Round Robin, o Prioridad, permitiendo adaptar la gestión del tiempo de CPU a las características específicas de cada grupo de procesos.
+	\item \textbf{Asignación según Necesidades:} Los procesos son asignados a las colas basándose en criterios como la prioridad, tipo de proceso, o comportamiento. Esto permite una gestión más eficiente y ajustada a las necesidades de cada proceso.
+	\item \textbf{Prevención de Starvation:} Algunas implementaciones pueden incluir mecanismos como el envejecimiento para evitar el starvation en colas de baja prioridad.
+\end{itemize}
+
+\subsubsection{Funcionamiento del Algoritmo de Colas Múltiples}
+
+En un sistema con Colas Múltiples, los procesos se dividen en categorías basadas en características específicas y son colocados en colas correspondientes a esas características. Cada cola tiene su propio algoritmo de planificación, y la CPU se asigna a las colas según una política que puede considerar factores como la urgencia o la importancia de los procesos.
+
+\textbf{Ejemplo:}
+Supongamos que un sistema operativo utiliza tres colas:
+\begin{itemize}
+	\item \textbf{Cola A:} Procesos del sistema con algoritmo de Prioridad.
+	\item \textbf{Cola B:} Procesos de usuario interactivos con algoritmo Round Robin.
+	\item \textbf{Cola C:} Procesos de fondo o batch con algoritmo FCFS.
+\end{itemize}
+
+Cada cola gestiona sus procesos de acuerdo con su algoritmo específico. La asignación de CPU entre las colas puede estar basada en la prioridad de la cola, con colas de mayor prioridad recibiendo más tiempo de CPU.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Imagenes/colas.png}
+	\caption{Diagrama de Colas Múltiples en un sistema operativo.}
+\end{figure}
+
+\textbf{Dinámica de ejecución:}
+
+\begin{itemize}
+	\item Los procesos en Cola A, por tener alta prioridad, pueden recibir más tiempo de CPU. 
+	\item Los procesos de Cola B rotan con un \textit{quantum} fijo, permitiendo interactividad.
+	\item Los procesos de la Cola C, que son menos urgentes, esperan más tiempo pero se gestionan de manera más simple y eficiente.
+\end{itemize}
+
+Este método proporciona una flexibilidad significativa y puede adaptarse a las necesidades dinámicas de un sistema computacional moderno, asegurando que todos los tipos de procesos sean atendidos de manera eficaz.
+
+
