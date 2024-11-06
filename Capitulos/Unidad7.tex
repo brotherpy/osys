@@ -1,0 +1,132 @@
+\chapter{Unidad 7. Gestión de entrada / salida (I/O)}
+La gestión de entrada y salida (I/O) es una función crucial en los sistemas operativos, que facilita la interacción entre los programas y los dispositivos externos (como discos duros, teclados, monitores, impresoras, etc.). Los dispositivos periféricos necesitan intercambiar datos con la memoria y el procesador, pero no es fácil ni práctico que los procesos trabajen directamente con estos dispositivos. Afortunadamente, el sistema operativo se encarga de esta compleja tarea, actuando como intermediario para que los procesos no tengan que preocuparse por los detalles específicos de cada dispositivo. Gracias a esta gestión, los procesos pueden comunicarse con los dispositivos de manera uniforme y sin complicaciones. La entrada y salida permite que los programas realicen operaciones básicas de lectura y escritura, así como la transferencia de datos entre dispositivos de hardware y el sistema de procesamiento. El objetivo principal de la gestión de I/O es asegurar que los dispositivos de hardware funcionen de manera eficiente y que el sistema operativo gestione de forma adecuada las solicitudes de entrada y salida de múltiples procesos simultáneamente.
+
+\textbf{Ejemplo:}
+\begin{figure}[H] \centering \includegraphics[width=0.7\linewidth]{Imagenes/e-s.png} \caption{Al escribir, se producen varias acciones gestionadas por el controlador I/O} \end{figure}
+Un ejemplo común de la importancia de la I/O es cuando un usuario escribe en un teclado (entrada) y el texto aparece en la pantalla (salida). Cuando se presiona una tecla, el teclado envía una señal al sistema operativo, que primero interpreta esta señal como un código correspondiente al carácter pulsado. Luego, el sistema operativo organiza los recursos necesarios para trasladar esta información a la memoria y notificar a la CPU. A través del controlador de video, el sistema operativo envía la información al monitor, donde finalmente el carácter se muestra en la pantalla. 
+\section{Dispositivos Hardware}
+Los dispositivos hardware son componentes físicos que realizan tareas de entrada y salida. Se dividen en tres grandes grupos:
+
+\begin{tcolorbox}[title= División de los dispositivos \textit{hardware}]
+	\begin{itemize}
+		
+		
+		\item \textbf{Dispositivos de almacenamiento:}
+		Estos dispositivos se encargan de guardar información, lo cual incluye discos duros, unidades de estado sólido (SSD), y discos ópticos. Son fundamentales para almacenar y recuperar datos de manera permanente o temporal.
+		\item \textbf{Terminales:}
+		Son dispositivos que permiten la interacción directa entre el usuario y el sistema, como teclados, pantallas y ratones. Facilitan la entrada de datos al sistema y la visualización o salida de información hacia el usuario.
+		\item \textbf{Dispositivos de comunicación:}
+		Incluyen tarjetas de red, módems, dispositivos WiFi, Bluetooth y otros dispositivos que permiten la transmisión de datos entre computadoras o redes. Estos dispositivos posibilitan la comunicación entre diferentes sistemas o componentes, asegurando que los datos puedan ser compartidos de forma eficiente.
+
+		
+	\end{itemize}
+\end{tcolorbox}
+\subsection{Tipos de dispositivos de I/O}
+Los dispositivos de entrada y salida pueden clasificarse en tres tipos de acuerdo a la funcionalidad que tienen:
+\begin{itemize}
+	\item  \textbf{Dispositivos de entrada: }Permiten al sistema recibir datos. Ejemplos: teclados, micrófonos, cámaras.
+	\item \textbf{Dispositivos de salida: }Permiten al sistema enviar datos. Ejemplos: monitores, impresoras, altavoces.
+	\item  \textbf{Dispositivos de entrada/salida (I/O): }Pueden tanto recibir como enviar datos. Ejemplos: discos duros, unidades USB, tarjetas de red.
+\end{itemize}
+\newpage
+\section{Interfaz Procesador-Periférico}
+La interfaz entre el procesador y los dispositivos periféricos es esencial para la gestión de las operaciones de entrada y salida. Esta interfaz permite que los dispositivos periféricos se conecten al sistema y puedan intercambiar información con el procesador de manera eficiente. Existen tres tipos principales de conexión que facilitan esta interacción:
+
+\begin{tcolorbox}[title= Tipos de conexión]
+	\begin{itemize}
+		
+		
+		\item \textbf{Registros:}
+	Los registros son áreas de almacenamiento de alta velocidad dentro del hardware que permiten una comunicación directa entre la CPU y los dispositivos periféricos. A través de los registros, la CPU puede enviar instrucciones o datos a un periférico y recibir respuestas rápidamente. Por ejemplo, cuando se escribe un carácter con el teclado, este se almacena temporalmente en un registro antes de ser procesado.
+	\item \textbf{Controladores:}
+	Los controladores, también conocidos como adaptadores o interfaces de dispositivos, son circuitos o chips dedicados que actúan como intermediarios entre la CPU y los dispositivos periféricos. Estos componentes permiten que la CPU delegue tareas específicas a los periféricos. Los controladores traducen las instrucciones de la CPU a un lenguaje que el dispositivo puede entender y gestionan señales como interrupciones para informar a la CPU cuando una tarea ha sido completada. Un ejemplo común es el controlador de una impresora, que recibe datos de la CPU y controla la impresora para que realice la impresión.
+	\item \textbf{Canales:}
+	Los canales son mecanismos más complejos y avanzados que los registros y controladores. Se utilizan para gestionar transferencias de datos de gran volumen entre la CPU y los dispositivos periféricos. Los canales pueden operar de manera semi-independiente, lo que significa que permiten transferir datos sin la constante supervisión de la CPU, liberándola para que realice otras tareas. Esto es particularmente útil en operaciones que implican grandes volúmenes de datos, como la transferencia de archivos desde un disco duro a la memoria principal. Un ejemplo típico es el uso de canales DMA (Acceso Directo a Memoria), que gestionan grandes transferencias de datos con mínima intervención de la CPU. Algunos dispositivos gráficos modernos también utilizan DMA para enviar datos directamente a la pantalla, sin la intervención constante de la CPU.
+	
+		
+	\end{itemize}
+\end{tcolorbox}
+
+
+\newpage
+
+\section{Terminales}
+Las terminales son dispositivos que combinan un teclado y una pantalla, permitiendo la interacción directa del usuario con el sistema. Las terminales son fundamentales para el ingreso y visualización de información en tiempo real. Existen diferentes tipos de terminales, según la forma en la que se conectan y operan:
+\begin{tcolorbox}[title= Categorias de terminales]
+	\begin{itemize}
+		
+		
+		\item \textbf{Terminales RS-232:}
+		Estas terminales se conectan a través del estándar de comunicación RS-232, que es un protocolo serial ampliamente utilizado para la transmisión de datos entre computadoras y periféricos. Este tipo de conexión es común en dispositivos antiguos, como terminales de texto, impresoras y algunos módems. A pesar de que ha sido reemplazado en gran medida por interfaces más rápidas, el RS-232 aún se usa en aplicaciones industriales y sistemas embebidos debido a su simplicidad y fiabilidad. Un ejemplo son los sistemas de inventario en almacenes, que aún utilizan RS-232 debido a la estabilidad del protocolo.
+		\item \textbf{Terminales mapeadas en memoria:}
+		Son terminales cuya pantalla está directamente vinculada a una sección de la memoria del sistema, permitiendo un acceso rápido y eficiente para mostrar información. Este método permite que la CPU o el controlador de video escriba directamente en la memoria que corresponde a la pantalla, logrando que los cambios se reflejen inmediatamente. Un ejemplo clásico de terminal mapeada en memoria es la consola de los sistemas basados en DOS, donde la pantalla de texto era controlada escribiendo directamente en la memoria de video.
+		\item \textbf{Terminales virtuales:}
+		En sistemas modernos, las terminales virtuales permiten emular múltiples interfaces de terminal en una sola pantalla, lo cual facilita el trabajo simultáneo con varios procesos sin necesidad de múltiples dispositivos físicos. Un ejemplo de terminales virtuales son las consolas de Linux, que permiten al usuario cambiar entre diferentes sesiones presionando combinaciones de teclas (como Ctrl+Alt+F1, F2, etc.). Estas terminales permiten realizar múltiples tareas en paralelo, mejorando la eficiencia en la interacción del usuario con el sistema. Otro ejemplo es el uso de programas como PuTTY, que permiten establecer múltiples conexiones de terminal hacia diferentes servidores desde un único dispositivo.
+		
+	\end{itemize}
+\end{tcolorbox}
+
+\newpage
+
+\section{Gestión del Almacenamiento Secundario}
+
+La \textbf{gestión del almacenamiento secundario} es una parte esencial de la gestión de entrada y salida, ya que permite al sistema operativo almacenar grandes volúmenes de datos de forma persistente. El almacenamiento secundario se refiere a todos aquellos dispositivos que no forman parte de la memoria principal, como los discos duros, unidades SSD, discos ópticos y unidades USB. Estos dispositivos son fundamentales para mantener la información a largo plazo, ya que la memoria principal es volátil y no puede retener datos sin un suministro continuo de energía.
+
+\subsection{Asignación y control del espacio}
+
+Una de las tareas clave en la gestión del almacenamiento secundario es la \textbf{asignación de espacio} en los dispositivos de almacenamiento. El sistema operativo debe decidir cómo se asigna el espacio disponible para almacenar archivos, utilizando diferentes métodos de asignación:
+
+\begin{itemize}
+	\item \textbf{Asignación contigua:} Los archivos se almacenan en bloques de memoria consecutivos. Este método es sencillo y permite un acceso rápido, pero puede llevar a la fragmentación y problemas de espacio insuficiente para archivos que crecen. 
+	\item \textbf{Asignación enlazada:} Cada archivo se almacena en bloques que pueden estar dispersos en el disco, y cada bloque contiene un puntero al siguiente. Esto facilita la gestión del espacio, pero puede ser más lento en términos de acceso debido a la necesidad de seguir los punteros. En SSDs, este método introduce una sobrecarga que puede contribuir al desgaste más rápido de las celdas de memoria.
+	\item \textbf{Asignación indexada:} Se utiliza una tabla de índices para mantener una lista de los bloques que pertenecen a un archivo. Este método combina las ventajas de los métodos anteriores, proporcionando flexibilidad y reduciendo la fragmentación. 
+\end{itemize}
+Las unidades SSD requieren una gestión especial debido a la naturaleza de la memoria flash:
+
+\begin{itemize}
+	\item \textbf{Wear Leveling (Nivelación de Desgaste):} Las celdas de una SSD tienen un número limitado de ciclos de escritura. Para maximizar la vida útil, las SSDs implementan técnicas de nivelación de desgaste, que distribuyen las escrituras de manera uniforme a través de todas las celdas, evitando que algunas celdas se desgasten más rápido que otras.
+	\item \textbf{Garbage Collection (Recolección de Basura):} Cuando se eliminan archivos en una SSD, los bloques que contienen esos datos no se liberan de inmediato. El controlador de la SSD recopila estos bloques ``basura'' en segundo plano para preparar celdas para futuras escrituras, mejorando el rendimiento de escritura.
+\end{itemize}
+
+Además, el sistema operativo debe \textbf{controlar el espacio disponible} en el almacenamiento, llevando un registro de los bloques libres y asignados. Este control se realiza mediante estructuras como \textbf{bitmaps} o \textbf{listas enlazadas}, que permiten al sistema saber qué partes del disco están disponibles para nuevas asignaciones.
+
+
+
+\subsection{Métodos de acceso}
+
+Existen varios métodos para acceder a los datos en el almacenamiento secundario, dependiendo de la estructura del archivo y las necesidades del sistema:
+
+\begin{itemize}
+	\item \textbf{Acceso secuencial:} Los datos se leen o escriben de manera ordenada, uno tras otro. Este método es común en cintas magnéticas y se utiliza para archivos que se procesan de principio a fin, como registros de transacciones. Es eficiente para operaciones donde el acceso aleatorio no es necesario.
+	\item \textbf{Acceso directo (aleatorio):} Los datos se pueden leer o escribir en cualquier orden, accediendo directamente a una posición específica del archivo. Este método es fundamental en discos duros y SSDs, ya que permite un acceso rápido y flexible, esencial para aplicaciones que requieren tiempos de respuesta bajos.
+\end{itemize}
+
+\subsection{Directorios y organización de archivos}
+
+Los sistemas operativos utilizan \textbf{estructuras de directorios} para organizar los archivos almacenados en el almacenamiento secundario. Los directorios permiten agrupar archivos en una jerarquía lógica, facilitando su localización y manejo. Los tipos más comunes de estructuras de directorios incluyen:
+
+\begin{itemize}
+	\item \textbf{Directorios de una sola capa:} Todos los archivos se almacenan en un único nivel, lo cual puede ser eficiente para un número pequeño de archivos, pero se vuelve difícil de gestionar a medida que aumenta la cantidad de archivos.
+	\item \textbf{Directorios jerárquicos:} Los archivos se organizan en una estructura de árbol, permitiendo al usuario crear carpetas y subcarpetas para organizar mejor la información. Este modelo facilita la búsqueda y gestión de archivos al dividirlos en categorías lógicas.
+
+\end{itemize}
+
+\subsection{Seguridad y protección de archivos}
+
+La \textbf{seguridad de los archivos} en el almacenamiento secundario es fundamental para proteger la integridad y privacidad de los datos. Los sistemas operativos implementan diversos mecanismos para garantizar que solo los usuarios autorizados puedan acceder o modificar un archivo:
+
+\begin{itemize}
+	\item \textbf{Permisos de acceso:} Los archivos y directorios pueden tener permisos que definan quién puede leer, escribir o ejecutar el archivo. En sistemas Unix y Linux, los permisos se asignan a nivel de usuario, grupo y otros, utilizando un esquema que incluye permisos de lectura (\texttt{r}), escritura (\texttt{w}) y ejecución (\texttt{x}).
+	\item \textbf{Control de acceso basado en listas (ACL):} Permite definir reglas más detalladas sobre quién puede acceder a un archivo y qué acciones pueden realizar. Esto proporciona una mayor granularidad en el control de acceso en comparación con los permisos estándar.
+	\item \textbf{Cifrado de datos:} Para proteger los datos almacenados, algunos sistemas operativos permiten cifrar los archivos, asegurando que solo los usuarios con la clave correcta puedan acceder a ellos. El cifrado se usa ampliamente en dispositivos portátiles para proteger la información en caso de pérdida o robo.
+\end{itemize}
+
+\subsection{Gestión del espacio disponible}
+
+El sistema operativo necesita gestionar el \textbf{espacio disponible} en el almacenamiento secundario para garantizar que siempre haya suficiente espacio para nuevos archivos y que el almacenamiento existente se utilice de manera eficiente. Esto implica:
+
+\begin{itemize}
+		
+	\item \textbf{Compactación y desfragmentación:} En sistemas que utilizan asignación contigua, el sistema operativo puede realizar procesos de desfragmentación para consolidar los archivos y reducir la fragmentación, mejorando así los tiempos de acceso. La compactación ayuda a evitar el problema del "espacio insuficiente contiguo" para archivos grandes.
+\item \textbf{Bitmaps:} Los bitmaps son una estructura de datos utilizada por el sistema operativo para llevar un registro del espacio libre y ocupado en el almacenamiento secundario. En un bitmap, cada bit representa un bloque de almacenamiento: un valor de "0" puede indicar que el bloque está libre, mientras que un ``1'' indica que está ocupado. Los bitmaps permiten gestionar de manera eficiente el espacio libre, ya que facilitan la identificación rápida de bloques que están disponibles para nuevas asignaciones.
+\end{itemize}

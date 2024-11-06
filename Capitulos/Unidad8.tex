@@ -1,0 +1,14 @@
+\chapter{Unidad 8. Sistemas  distribuidos}
+Un sistema operativo distribuido es una colección de computadoras independientes (también denominadas nodos) que se presentan ante los usuarios como una única computadora coherente. Estas computadoras se comunican y colaboran para ejecutar tareas mediante el uso de redes de comunicación y protocolos específicos, permitiendo la distribución de la carga de trabajo y el acceso compartido a recursos de manera eficiente. Cada nodo tiene su propio procesador y memoria, pero trabajan en coordinación para brindar la ilusión de un sistema unificado. Esto permite una mayor tolerancia a fallos y una mejor utilización de los recursos disponibles, ya que las tareas pueden ser distribuidas dinámicamente según la capacidad y disponibilidad de cada nodo.
+
+\textbf{Ejemplo:}
+
+Google File System (GFS): Sistema de archivos distribuido que permite almacenar grandes volúmenes de datos de manera distribuida, proporcionando redundancia y alta disponibilidad. GFS divide los datos en bloques que se replican en diferentes nodos, asegurando la recuperación de datos en caso de fallos y mejorando el rendimiento a través del paralelismo.
+
+\section{Ventajas de los sistemas distribuidos}
+Escalabilidad: Permiten agregar más nodos al sistema sin afectar el rendimiento global.
+
+Disponibilidad y Tolerancia a Fallos: Un fallo en un nodo no afecta el funcionamiento del sistema completo gracias a la replicación de tareas y datos.
+
+Compartición de Recursos: Los recursos, como almacenamiento, procesamiento y dispositivos de E/S, se pueden compartir entre los nodos, lo cual mejora la eficiencia.
+

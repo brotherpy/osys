@@ -298,18 +298,6 @@ Entonces la ejecución se daría de la siguiente forma:
 
 
 
-\subsection{Algoritmo SRT (Shortest Remaining Time)}
-
-El algoritmo Shortest Remaining Time (SRT), también conocido como Shortest Remaining Time First (SRTF), es una variante del algoritmo SJN (Shortest Job Next), pero con la característica de que es un algoritmo apropiativo. Esto significa que un proceso en ejecución puede ser interrumpido si llega otro proceso con un tiempo de ejecución restante menor.
-
-\textbf{Características del SRT:} 
-\begin{itemize} 
-    \item Política apropiativa: Si un proceso con menor tiempo de ejecución restante llega mientras otro proceso está en ejecución, el proceso actual es interrumpido y se le da prioridad al nuevo proceso. 
-    \item Minimización del tiempo promedio de espera: Al igual que en SJN, los procesos más cortos tienen prioridad, lo que reduce el tiempo promedio de espera en el sistema. 
-    \item Eficiente para tiempos dinámicos: A diferencia de SJN, donde es necesario conocer la duración total de los procesos antes de ejecutarse, SRT permite tomar decisiones a medida que nuevos procesos llegan al sistema. 
-    \item Problema del "hambre": Los procesos largos pueden ser interrumpidos continuamente si nuevos procesos más cortos siguen llegando, lo que puede causar que un proceso largo nunca termine. 
-\end{itemize}
-
 
 \subsection{Algoritmo SRT (Shortest Remaining Time)}
 
@@ -321,7 +309,7 @@ El algoritmo Shortest Remaining Time (SRT), también conocido como Shortest Rema
  	\item Minimización del tiempo promedio de espera: Al igual que en SJN, los procesos más cortos tienen prioridad, lo que reduce el tiempo promedio de espera en el sistema. \item Eficiente para tiempos dinámicos: A diferencia de SJN, donde es necesario conocer la duración total de los procesos antes de ejecutarse, SRT permite tomar decisiones a medida que nuevos procesos llegan al sistema. 
  	\item Problema del "hambre": Los procesos largos pueden ser interrumpidos continuamente si nuevos procesos más cortos siguen llegando, lo que puede causar que un proceso largo nunca termine. \end{itemize}
 
-\subsubsection{Ejecución según SRT}
+\subsubsection{Funcionamiento del algoritmo}
 
 El algoritmo SRT selecciona siempre el proceso con el menor tiempo de ejecución restante. Si un nuevo proceso llega con un tiempo de ejecución más corto que el proceso en ejecución, este último se interrumpe y el nuevo proceso comienza a ejecutarse.
 
